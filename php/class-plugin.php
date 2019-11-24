@@ -19,5 +19,9 @@ class Plugin extends Plugin_Abstract {
 		// Load frontend assets.
 		$this->frontend = new Frontend\Frontend();
 		$this->frontend->register_hooks();
+
+		// Load shortcode assets.
+		$this->frontend_shortcode = new Frontend\Shortcode();
+		$this->frontend_shortcode->register_hooks();
 	}
 }
