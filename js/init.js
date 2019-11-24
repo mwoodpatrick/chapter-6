@@ -1,5 +1,9 @@
 jQuery(function($) {
-	console.log('Hello World');
-	console.log(swpajaxp.phpversion);
-	console.log(swpajaxp.ajaxurl);
+	$('#swpajax-form').on('submit', function(e) {
+		e.preventDefault();
+
+		var inputName = $(this).find('#swpajax-name').val();
+		console.log('Name submitted');
+		console.log(inputName);
+	});
 });

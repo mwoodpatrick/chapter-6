@@ -29,6 +29,41 @@ class Shortcode {
 	 * @return string Shortcode html.
 	 */
 	public function output_shortcode( $atts = array(), $content = '' ) {
+
+		// Conditionally load script for shortcode only.
+		wp_enqueue_script(
+			'sample_wpajax_plugin',
+			SAMPLE_WPAJAX_URL . '/js/init.js',
+			array( 'jquery' ),
+			SAMPLE_WPAJAX_VERSION,
+			true
+		);
+		wp_localize_script(
+			'sample_wpajax_plugin',
+			'swpajaxp',
+			array(
+				'phpversion' => PHP_VERSION,
+				'ajaxurl'    => admin_url( 'admin-ajax.php' ),
+			)
+		);
+
+		// Conditionially load style for shortcode only.
+		if ( ! wp_style_is( 'sample_wpajax_plugin_styles', 'done' ) ) {
+			wp_register_style(
+				'sample_wpajax_plugin_styles',
+				SAMPLE_WPAJAX_URL . '/css/form-shortcode.css',
+				array(),
+				SAMPLE_WPAJAX_VERSION,
+				'all'
+			);
+			wp_print_styles(
+				array(
+					'sample_wpajax_plugin_styles',
+				)
+			);
+		}
+
+		// Parse shortcode and display.
 		$defaults = shortcode_atts(
 			array(),
 			$atts,
@@ -41,7 +76,7 @@ class Shortcode {
 				<?php esc_html_e( 'Enter your name', 'sample-wpajax-plugin' ); ?>:
 			</label>
 			<br />
-			<input id="swpajax-name" name="swpajax-name" value="" placeholder="<?php esc_attr( __( 'Enter your name', 'sample-wpajax-plugin' ) ); ?>" />
+			<input id="swpajax-name" name="swpajax-name" value="" placeholder="<?php echo esc_attr( __( 'Enter your name', 'sample-wpajax-plugin' ) ); ?>" />
 			<br />
 			<button id="swpajax-submit">
 				<?php esc_html_e( 'Submit', 'sample-wpajax-plugin' ); ?>

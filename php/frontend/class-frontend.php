@@ -23,20 +23,6 @@ class Frontend {
 	 * Load our Front-end scripts.
 	 */
 	public function load_scripts() {
-		wp_enqueue_script(
-			'sample_wpajax_plugin',
-			SAMPLE_WPAJAX_URL . '/js/init.js',
-			array( 'jquery' ),
-			SAMPLE_WPAJAX_VERSION,
-			true
-		);
-		wp_localize_script(
-			'sample_wpajax_plugin',
-			'swpajaxp',
-			array(
-				'phpversion' => PHP_VERSION,
-				'ajaxurl'    => admin_url( 'admin-ajax.php' ),
-			)
-		);
+		// Load any other scripts/styles here.
 	}
 }

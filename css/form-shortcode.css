@@ -1,0 +1,20 @@
+/* Form Label */
+#swpajax-form label {
+	font-size: 20px;
+	font-weight: 700;
+	display: block;
+}
+#swpajax-form input {
+	min-height: 48px;
+	display: flex;
+	align-items: center;
+	min-width: 260px;
+	font-size: 18px;
+}
+#swpajax-form button {
+	margin: 10px 0;
+	min-width: 260px;
+}
+#swpajax-form br {
+	display: none;
+}
